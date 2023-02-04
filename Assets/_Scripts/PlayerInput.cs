@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        playerMove.direction = Vector3.zero;
+        playerMove.Direction = Vector3.zero;
 
         if(Input.touchCount > 0)
         {
@@ -38,23 +38,23 @@ public class PlayerInput : MonoBehaviour
             {
                 if(checkTouchPositionXMoreHalfWidthScreen())
                 {
-                    playerMove.direction = Vector3.back;
+                    playerMove.Direction = Vector3.back;
                 }
                 else
                 {
-                    playerMove.direction = Vector3.forward;
+                    playerMove.Direction = Vector3.forward;
                 }
 
                 if(tapCount == 2 && timeLastTouch2 <= (timeLastTouch1 + timeRecognitionDoubleTouch))
                 {
                     if(clockWise && checkTouchPositionXMoreHalfWidthScreen() || !clockWise && !checkTouchPositionXMoreHalfWidthScreen())
                     {
-                        playerMove.multiplier = 2;
+                        playerMove.Multiplier = 2;
                     }
                 }
                 else
                 {
-                    playerMove.multiplier = 1;
+                    playerMove.Multiplier = 1;
                 }
             }
 
