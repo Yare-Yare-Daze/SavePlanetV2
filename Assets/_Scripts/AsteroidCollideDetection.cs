@@ -13,9 +13,8 @@ public class AsteroidCollideDetection : MonoBehaviour
         if (collision.gameObject.CompareTag("Asteroid"))
         {
             Debug.Log(gameObject.name + " detected collision with asteroid");
-            OnCollisionAsteroidDetected?.Invoke(collision.transform.parent.gameObject);
-            
             collisionCount++;
+            OnCollisionAsteroidDetected?.Invoke(collision.transform.parent.gameObject);
         }
     }
 }
