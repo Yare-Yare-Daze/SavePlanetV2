@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerScoreCounter : MonoBehaviour
+public class UIPlayerScoreCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private AsteroidCollideDetection asteroidCollideDetection;

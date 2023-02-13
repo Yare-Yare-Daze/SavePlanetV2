@@ -12,7 +12,7 @@ public class AsteroidDestroingParticle : MonoBehaviour
         if(destroyParticle != null)
         {
             destroyParticle.transform.position = modelAsteroid.transform.position;
-            StartCoroutine(DestroyCorutine());
+            StartCoroutine(DestructionAsteroidCorutine());
         }
         else
         {
@@ -20,7 +20,7 @@ public class AsteroidDestroingParticle : MonoBehaviour
         }
     }
 
-    private IEnumerator DestroyCorutine()
+    private IEnumerator DestructionAsteroidCorutine()
     {
         modelAsteroid.SetActive(false);
         destroyParticle.gameObject.SetActive(true);

@@ -14,10 +14,9 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-
         initCornersFields();
-        Debug.Log("leftbottomCorner: " + leftbottomCorner);
-        Debug.Log("rightBottomCorner: " + rightBottomCorner);
+        //Debug.Log("leftbottomCorner: " + leftbottomCorner);
+        //Debug.Log("rightBottomCorner: " + rightBottomCorner);
     }
 
     private void Update()
@@ -46,10 +45,12 @@ public class Spawner : MonoBehaviour
         if (isTopSpawn)
         {
             spawnPosition = new Vector3(Random.Range(leftTopCorner.x, rightTopCorner.x), leftTopCorner.y, 0);
+            spawnPosition += Vector3.up;
         }
         else
         {
             spawnPosition = new Vector3(Random.Range(leftbottomCorner.x, rightBottomCorner.x), leftbottomCorner.y, 0);
+            spawnPosition += Vector3.down;
         }
 
         Instantiate(spawnObject, spawnPosition, Quaternion.identity);
