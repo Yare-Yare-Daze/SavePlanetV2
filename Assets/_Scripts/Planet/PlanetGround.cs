@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PlanetGround : MonoBehaviour
     [SerializeField] private float reductionSpeed;
     [SerializeField] private ParticleSystem planetDestroyParticle;
     private AsteroidCollideDetection asteroidCollideDetection;
+
+    public event Action OnPlanetDestroy;
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class PlanetGround : MonoBehaviour
         asteroid.GetComponent<AsteroidDestroingParticle>().AsteroidDestroy();
         StartCoroutine(ScaleReductionPlanet());
         StartCoroutine(DestructionPlanetParticle());
+        OnPlanetDestroy?.Invoke();
     }
 
     private IEnumerator ScaleReductionPlanet()
