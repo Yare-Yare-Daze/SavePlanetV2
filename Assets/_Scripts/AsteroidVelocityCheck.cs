@@ -15,7 +15,7 @@ public class AsteroidVelocityCheck : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(rb2d.velocity.normalized);
+        //Debug.Log(rb2d.velocity.normalized);
         var newShape = asteroidTrail.shape;
 
         // Rotate the forward vector towards the target direction by one step
@@ -24,9 +24,10 @@ public class AsteroidVelocityCheck : MonoBehaviour
         newDirection = Vector3.RotateTowards(transform.forward, rb2d.velocity, 1f, 0.0f);
         
         
+        
 
         // Draw a ray pointing at our target in
-        Debug.DrawRay(transform.position, newDirection, Color.red);
+        Debug.DrawRay(transform.forward, newDirection, Color.red);
 
         // Calculate a rotation a step closer to the target and applies rotation to this object
         transform.rotation = Quaternion.LookRotation(newDirection);

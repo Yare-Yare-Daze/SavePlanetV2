@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     public Vector3 Direction { get { return direction; } set { direction = value; } }
     public int Multiplier { get { return multiplier;} set { multiplier = value; } }
 
-    private void FixedUpdate()
+    private void Update()
     {
         transform.RotateAround(planetTransform.position, direction, speed * multiplier * Time.deltaTime);
     }

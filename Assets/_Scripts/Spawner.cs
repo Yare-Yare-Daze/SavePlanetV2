@@ -2,27 +2,33 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    protected Vector3 leftTopCorner;
-    protected Vector3 rightTopCorner;
-    protected Vector3 leftbottomCorner;
-    protected Vector3 rightBottomCorner;
+    private Vector3 leftTopCorner;
+    private Vector3 rightTopCorner;
+    private Vector3 leftbottomCorner;
+    private Vector3 rightBottomCorner;
 
-    [SerializeField] protected GameObject spawnObject;
-    [SerializeField] private float spawnTime;
+    [SerializeField] private GameObject spawnObject;
+    [SerializeField] private float maxSpawnTime;
+    [SerializeField] private float minSpawnTime;
+    [SerializeField] private float timeForMaxLevel;
 
     private float currentSpawnTime = 0;
+    private float currentLimitSpawnTime;
+    private float timePassedFromStart = 0;
 
-    private void Start()
+    private void Awake()
     {
-        initCornersFields();
-        //Debug.Log("leftbottomCorner: " + leftbottomCorner);
-        //Debug.Log("rightBottomCorner: " + rightBottomCorner);
+        Initialize();
+        
     }
 
     private void Update()
     {
+        timePassedFromStart += Time.deltaTime;
         currentSpawnTime += Time.deltaTime;
-        if(currentSpawnTime > spawnTime)
+        float reductionTimeRate = maxSpawnTime - (maxSpawnTime * (timePassedFromStart / timeForMaxLevel));
+        currentLimitSpawnTime = Mathf.Clamp(reductionTimeRate, minSpawnTime, maxSpawnTime);
+        if (currentSpawnTime > currentLimitSpawnTime)
         {
             toSpawnObject();
             currentSpawnTime = 0;
@@ -30,15 +36,16 @@ public class Spawner : MonoBehaviour
         
     }
 
-    protected void initCornersFields()
+    private void Initialize()
     {
         leftTopCorner = Camera.main.ViewportToWorldPoint(new Vector2(0f, 1f));
         rightTopCorner = Camera.main.ViewportToWorldPoint(new Vector2(1f, 1f));
         leftbottomCorner = Camera.main.ViewportToWorldPoint(new Vector2(0f, 0f));
         rightBottomCorner = Camera.main.ViewportToWorldPoint(new Vector2(1f, 0f));
+        currentLimitSpawnTime = maxSpawnTime;
     }
 
-    protected void toSpawnObject()
+    private void toSpawnObject()
     {
         bool isTopSpawn = Random.value > 0.5f ? true : false;
         Vector3 spawnPosition = Vector3.zero;
@@ -53,6 +60,7 @@ public class Spawner : MonoBehaviour
             spawnPosition += Vector3.down;
         }
 
-        Instantiate(spawnObject, spawnPosition, Quaternion.identity);
+        var obj = Instantiate(spawnObject, spawnPosition, Quaternion.identity);
+
     }
 }
