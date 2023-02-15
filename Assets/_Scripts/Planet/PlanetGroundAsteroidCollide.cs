@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetGround : MonoBehaviour
+public class PlanetGroundAsteroidCollide : MonoBehaviour
 {
     [SerializeField] private float reductionSpeed;
     [SerializeField] private ParticleSystem planetDestroyParticle;

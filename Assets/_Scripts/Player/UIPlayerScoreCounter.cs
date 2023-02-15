@@ -18,6 +18,11 @@ public class UIPlayerScoreCounter : MonoBehaviour
         asteroidCollideDetection.OnCollisionAsteroidDetected += UpdateScoreText;
     }
 
+    private void OnDisable()
+    {
+        asteroidCollideDetection.OnCollisionAsteroidDetected -= UpdateScoreText;
+    }
+
     private void UpdateScoreText(GameObject asteroid)
     {
         scoreText.text = $"Score: {asteroidCollideDetection.CollisionCount}";

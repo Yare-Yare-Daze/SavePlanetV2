@@ -9,6 +9,7 @@ public class PlanetShield : MonoBehaviour
     [SerializeField] private int maxHealthPoints;
 
     public event Action OnShieldDeactivated;
+    public event Action<int> OnHealthChanged;
 
     private void Awake()
     {
@@ -30,8 +31,8 @@ public class PlanetShield : MonoBehaviour
     private void ReduceHealthPoints(GameObject asteroid)
     {
         helathPoints = Mathf.Clamp(helathPoints - 1, 0, maxHealthPoints);
-        Debug.Log("Health points: " + helathPoints);
         asteroid.GetComponent<AsteroidDestroingParticle>().AsteroidDestroyOnPlanetShield();
+        OnHealthChanged?.Invoke(helathPoints);
 
         if (helathPoints == 0) gameObject.SetActive(false);
     }

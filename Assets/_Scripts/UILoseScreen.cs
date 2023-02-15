@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UILoseScreen : MonoBehaviour
 {
-    [SerializeField] private PlanetGround planetGround;
+    [SerializeField] private PlanetGroundAsteroidCollide planetGroundAsteroidCollide;
     [SerializeField] private GameObject loseScreen;
 
     private void Awake()
@@ -14,12 +14,12 @@ public class UILoseScreen : MonoBehaviour
 
     private void Initialize()
     {
-        planetGround.OnPlanetDestroy += ActivateLoseScreen;
+        planetGroundAsteroidCollide.OnPlanetDestroy += ActivateLoseScreen;
     }
 
     private void OnDisable()
     {
-        planetGround.OnPlanetDestroy -= ActivateLoseScreen;
+        planetGroundAsteroidCollide.OnPlanetDestroy -= ActivateLoseScreen;
     }
 
     private void ActivateLoseScreen()
