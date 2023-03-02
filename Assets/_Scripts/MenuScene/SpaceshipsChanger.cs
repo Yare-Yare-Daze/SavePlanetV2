@@ -27,6 +27,7 @@ public class SpaceshipsChanger : MonoBehaviour
         if(!PlayerPrefs.HasKey(Strings.SpaceshipKey))
         {
             currentSpaceshipIndex = 0;
+            PlayerPrefs.SetInt(Strings.SpaceshipKey, currentSpaceshipIndex);
         }
         else
         {
