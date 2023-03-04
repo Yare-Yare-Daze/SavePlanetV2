@@ -8,6 +8,7 @@ public class MenuScreenChanger : MonoBehaviour
 {
     [SerializeField] private RectTransform mainScreen;
     [SerializeField] private RectTransform settingsScreen;
+    [SerializeField] private RectTransform scoreScreen;
 
     public void OnClickPlayButton()
     {
@@ -17,13 +18,22 @@ public class MenuScreenChanger : MonoBehaviour
     public void OnClickSettingsButton()
     {
         mainScreen.gameObject.SetActive(false);
+        scoreScreen.gameObject.SetActive(false);
         settingsScreen.gameObject.SetActive(true);
+    }
+
+    public void OnClickScoreButton()
+    {
+        mainScreen.gameObject.SetActive(false);
+        settingsScreen.gameObject.SetActive(false);
+        scoreScreen.gameObject.SetActive(true);
     }
 
     public void OnClickHomeButton()
     {
-        mainScreen.gameObject.SetActive(true);
+        scoreScreen.gameObject.SetActive(false);
         settingsScreen.gameObject.SetActive(false);
+        mainScreen.gameObject.SetActive(true);
     }
 
 }
