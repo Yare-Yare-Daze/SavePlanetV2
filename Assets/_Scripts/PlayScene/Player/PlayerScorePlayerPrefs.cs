@@ -18,9 +18,11 @@ public class PlayerScorePlayerPrefs : MonoBehaviour
 
     private void UpdatePlayerPrefsScoreValue(GameObject go)
     {
-        if(PlayerPrefs.GetInt(Strings.ScoreValue) < asteroidCollideDetection.CollisionCount)
+        if(PlayerPrefs.GetInt(Strings.MaxScoreValue) < asteroidCollideDetection.CollisionCount)
         {
-            PlayerPrefs.SetInt(Strings.ScoreValue, asteroidCollideDetection.CollisionCount);
+            PlayerPrefs.SetInt(Strings.MaxScoreValue, asteroidCollideDetection.CollisionCount);
         }
+
+        PlayerPrefs.SetInt(Strings.LastScoreValue, asteroidCollideDetection.CollisionCount);
     }
 }
