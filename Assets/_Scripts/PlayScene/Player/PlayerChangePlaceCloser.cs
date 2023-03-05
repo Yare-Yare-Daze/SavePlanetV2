@@ -24,6 +24,6 @@ public class PlayerChangePlaceCloser : MonoBehaviour
 
     private void ChangePositionCloser()
     {
-        transform.position = new Vector3(transform.position.x, positionYCloser, transform.position.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - positionYCloser, transform.localPosition.z); ;
     }
 }
