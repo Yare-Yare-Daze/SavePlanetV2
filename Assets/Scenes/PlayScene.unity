@@ -5527,7 +5527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e715c7597da1b45b091fc79a295544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 3
+  maxHealthPoints: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6591,7 +6591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetShield: {fileID: 955943972}
-  positionYCloser: 0.5
+  closeOffsetValue: 0.25
 --- !u!1 &1761534302
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,4 +36,9 @@ public class MenuScreenChanger : MonoBehaviour
         mainScreen.gameObject.SetActive(true);
     }
 
+    public void OnClickQuitButton()
+    {
+        Application.Quit();
+    }
+
 }

@@ -61,4 +61,14 @@ public class SpaceshipsChanger : MonoBehaviour
         }
         spaceships[currentSpaceshipIndex].SetActive(true);
     }
+
+    private void OnEnable()
+    {
+        spaceshipsGO.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        spaceshipsGO.SetActive(false);
+    }
 }

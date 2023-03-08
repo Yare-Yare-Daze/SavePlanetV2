@@ -25,6 +25,7 @@ public class RestartSceneWhenLose : MonoBehaviour
     private void RestartScene()
     {
         StartCoroutine(WaitTouchToRestartCoroutine());
+        Time.timeScale = 0.0f;
     }
 
     private IEnumerator WaitTouchToRestartCoroutine()

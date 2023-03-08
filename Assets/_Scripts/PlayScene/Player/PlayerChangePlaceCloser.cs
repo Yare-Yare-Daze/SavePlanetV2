@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerChangePlaceCloser : MonoBehaviour
 {
     [SerializeField] private PlanetShield planetShield;
-    [SerializeField] private float positionYCloser;
+    [SerializeField] private float closeOffsetValue = 0.25f;
 
     private void Awake()
     {
@@ -24,6 +24,8 @@ public class PlayerChangePlaceCloser : MonoBehaviour
 
     private void ChangePositionCloser()
     {
-        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - positionYCloser, transform.localPosition.z); ;
+        var targetOffset = (transform.position - planetShield.transform.position) * closeOffsetValue;
+
+        transform.position -= targetOffset;
     }
 }
