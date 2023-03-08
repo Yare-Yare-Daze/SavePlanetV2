@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private float maxSpawnTime;
     [SerializeField] private float minSpawnTime;
     [SerializeField] private float timeForMaxLevel;
+    [SerializeField] private PlanetGroundAsteroidCollide planetGroundAsteroidCollide;
 
     private float currentSpawnTime = 0;
     private float currentLimitSpawnTime;
@@ -19,7 +20,7 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         Initialize();
-        
+
     }
 
     private void Update()
@@ -33,7 +34,6 @@ public class Spawner : MonoBehaviour
             toSpawnObject();
             currentSpawnTime = 0;
         }
-        
     }
 
     private void Initialize()
@@ -43,6 +43,17 @@ public class Spawner : MonoBehaviour
         leftbottomCorner = Camera.main.ViewportToWorldPoint(new Vector2(0f, 0f));
         rightBottomCorner = Camera.main.ViewportToWorldPoint(new Vector2(1f, 0f));
         currentLimitSpawnTime = maxSpawnTime;
+        planetGroundAsteroidCollide.OnPlanetDestroy += OnPlanetDestroyHandler;
+    }
+
+    private void OnDisable()
+    {
+        planetGroundAsteroidCollide.OnPlanetDestroy -= OnPlanetDestroyHandler;
+    }
+
+    private void OnPlanetDestroyHandler()
+    {
+        gameObject.SetActive(false);
     }
 
     private void toSpawnObject()

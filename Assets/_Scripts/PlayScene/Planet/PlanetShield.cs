@@ -4,22 +4,23 @@ using UnityEngine;
 public class PlanetShield : MonoBehaviour
 {
     private AsteroidCollideDetection asteroidCollideDetection;
-    private int helathPoints;
+    private int currentHelathPoints;
 
     [SerializeField] private int maxHealthPoints;
 
     public event Action OnShieldDeactivated;
     public event Action<int> OnHealthChanged;
 
-    private void Awake()
+    private void Start()
     {
         Initialize();
     }
     private void Initialize()
     {
-        helathPoints = maxHealthPoints;
+        currentHelathPoints = maxHealthPoints;
         asteroidCollideDetection = GetComponent<AsteroidCollideDetection>();
         asteroidCollideDetection.OnCollisionAsteroidDetected += ReduceHealthPoints;
+        OnHealthChanged?.Invoke(currentHelathPoints); // For correct display score on start stage
     }
 
     private void OnDisable()
@@ -30,11 +31,11 @@ public class PlanetShield : MonoBehaviour
 
     private void ReduceHealthPoints(GameObject asteroid)
     {
-        helathPoints = Mathf.Clamp(helathPoints - 1, 0, maxHealthPoints);
+        currentHelathPoints = Mathf.Clamp(currentHelathPoints - 1, 0, maxHealthPoints);
         asteroid.GetComponent<AsteroidDestroingParticle>().AsteroidDestroyOnPlanetShield();
-        OnHealthChanged?.Invoke(helathPoints);
+        OnHealthChanged?.Invoke(currentHelathPoints);
 
-        if (helathPoints == 0) gameObject.SetActive(false);
+        if (currentHelathPoints == 0) gameObject.SetActive(false);
     }
 
 

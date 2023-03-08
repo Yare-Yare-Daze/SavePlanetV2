@@ -7,6 +7,7 @@ public class PlanetGroundAsteroidCollide : MonoBehaviour
 {
     [SerializeField] private float reductionSpeed;
     [SerializeField] private ParticleSystem planetDestroyParticle;
+    [SerializeField] private CircleCollider2D circleCollider2D;
     private AsteroidCollideDetection asteroidCollideDetection;
 
     public event Action OnPlanetDestroy;
@@ -29,6 +30,7 @@ public class PlanetGroundAsteroidCollide : MonoBehaviour
 
     private void AsteroidCollideHandler(GameObject asteroid)
     {
+        circleCollider2D.enabled = false;
         asteroid.GetComponent<AsteroidDestroingParticle>().AsteroidDestroy();
         StartCoroutine(ScaleReductionPlanet());
         StartCoroutine(DestructionPlanetParticle());

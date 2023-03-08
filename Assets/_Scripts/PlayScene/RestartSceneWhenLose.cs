@@ -25,12 +25,12 @@ public class RestartSceneWhenLose : MonoBehaviour
     private void RestartScene()
     {
         StartCoroutine(WaitTouchToRestartCoroutine());
-        Time.timeScale = 0.0f;
+        //Time.timeScale = 0.0f;
     }
 
     private IEnumerator WaitTouchToRestartCoroutine()
     {
         yield return new WaitUntil(() => Input.touchCount > 0);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(Strings.PlayScene);
     }
 }
