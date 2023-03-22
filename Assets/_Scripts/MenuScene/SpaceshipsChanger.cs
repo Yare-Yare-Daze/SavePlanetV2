@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class SpaceshipsChanger : MonoBehaviour
 {
     [SerializeField] private GameObject spaceshipsGO;
+    [SerializeField] private GameObject describesSpaceShipsGO;
     [SerializeField] private Button leftButton;
     [SerializeField] private Button rightButton;
 
     private List<GameObject> spaceships = new List<GameObject>();
+    private List<GameObject> describes = new List<GameObject>();
     private int currentSpaceshipIndex;
 
     private void Start()
@@ -22,6 +24,7 @@ public class SpaceshipsChanger : MonoBehaviour
         for (int i = 0; i < spaceshipsGO.transform.childCount; i++)
         {
             spaceships.Add(spaceshipsGO.transform.GetChild(i).gameObject);
+            describes.Add(describesSpaceShipsGO.transform.GetChild(i).gameObject);
         }
 
         if(!PlayerPrefs.HasKey(Strings.SpaceshipKey))
@@ -43,13 +46,13 @@ public class SpaceshipsChanger : MonoBehaviour
 
     private void OnClickLeftButtonHandler()
     {
-        currentSpaceshipIndex = Mathf.Clamp(currentSpaceshipIndex + 1, 0, spaceships.Count - 1);
+        currentSpaceshipIndex = Mathf.Clamp(currentSpaceshipIndex - 1, 0, spaceships.Count - 1);
         PlayerPrefs.SetInt(Strings.SpaceshipKey, currentSpaceshipIndex);
     }
 
     private void OnClickRightButtonHandler()
     {
-        currentSpaceshipIndex = Mathf.Clamp(currentSpaceshipIndex - 1, 0, spaceships.Count - 1);
+        currentSpaceshipIndex = Mathf.Clamp(currentSpaceshipIndex + 1, 0, spaceships.Count - 1);
         PlayerPrefs.SetInt(Strings.SpaceshipKey, currentSpaceshipIndex);
     }
 
@@ -58,17 +61,21 @@ public class SpaceshipsChanger : MonoBehaviour
         for (int i = 0; i < spaceships.Count; i++)
         {
             spaceships[i].SetActive(false);
+            describes[i].SetActive(false);
         }
         spaceships[currentSpaceshipIndex].SetActive(true);
+        describes[currentSpaceshipIndex].SetActive(true);
     }
 
     private void OnEnable()
     {
         spaceshipsGO.SetActive(true);
+        describesSpaceShipsGO.SetActive(true);
     }
 
     private void OnDisable()
     {
         spaceshipsGO.SetActive(false);
+        describesSpaceShipsGO.SetActive(false);
     }
 }

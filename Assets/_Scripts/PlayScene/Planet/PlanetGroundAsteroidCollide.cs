@@ -8,6 +8,7 @@ public class PlanetGroundAsteroidCollide : MonoBehaviour
     [SerializeField] private float reductionSpeed;
     [SerializeField] private ParticleSystem planetDestroyParticle;
     [SerializeField] private CircleCollider2D circleCollider2D;
+    [SerializeField] private float timeStartEmissionExplode;
     private AsteroidCollideDetection asteroidCollideDetection;
 
     public event Action OnPlanetDestroy;
@@ -15,6 +16,7 @@ public class PlanetGroundAsteroidCollide : MonoBehaviour
     private void Awake()
     {
         Initialize();
+        
     }
 
     private void Initialize()
@@ -39,11 +41,17 @@ public class PlanetGroundAsteroidCollide : MonoBehaviour
 
     private IEnumerator ScaleReductionPlanet()
     {
-        while(gameObject.activeSelf == true)    
+        float spentTime = 0f;
+        while(spentTime <= timeStartEmissionExplode)    
         {
+            Vector3 newPosShake = UnityEngine.Random.insideUnitCircle;
+
             yield return new WaitForFixedUpdate();
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, reductionSpeed * Time.deltaTime);
-            if (transform.localScale == Vector3.zero)
+
+            transform.position = Vector3.Lerp(transform.position, newPosShake, reductionSpeed * Time.deltaTime);
+            spentTime += Time.deltaTime;
+
+            if (spentTime > timeStartEmissionExplode)
                 gameObject.SetActive(false);
         }
     }

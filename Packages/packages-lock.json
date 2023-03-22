@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.lootlocker.lootlockersdk": {
+      "version": "https://github.com/LootLocker/unity-sdk.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "hash": "5d65fcc9d6683c9883301d8c2088b8e24201aa83"
+    },
     "com.unity.collab-proxy": {
       "version": "1.17.7",
       "depth": 0,
@@ -64,7 +73,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
