@@ -6,7 +6,10 @@ using UnityEngine;
 public class UIPlayerScoreCounter : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private AsteroidCollideDetection asteroidCollideDetection;
+    [SerializeField] private AsteroidCollideDetection shieldAsteroidCollideDetection;
+    [SerializeField] private Transform bulletPull;
+
+    private List<AsteroidCollideDetection> bulletsACD = new List<AsteroidCollideDetection>();
 
     private void Awake()
     {
@@ -15,16 +18,30 @@ public class UIPlayerScoreCounter : MonoBehaviour
 
     private void Initialize()
     {
-        asteroidCollideDetection.OnCollisionAsteroidDetected += UpdateScoreText;
+        for (int i = 0; i < bulletPull.childCount; i++)
+        {
+            bulletsACD.Add(bulletPull.GetChild(i).GetComponent<AsteroidCollideDetection>());
+            bulletsACD[i].OnCollisionAsteroidDetected += UpdateScoreText;
+        }
+        shieldAsteroidCollideDetection.OnCollisionAsteroidDetected += UpdateScoreText;
     }
 
     private void OnDisable()
     {
-        asteroidCollideDetection.OnCollisionAsteroidDetected -= UpdateScoreText;
+        shieldAsteroidCollideDetection.OnCollisionAsteroidDetected -= UpdateScoreText;
+        for (int i = 0; i < bulletPull.childCount; i++)
+        {
+            bulletsACD[i].OnCollisionAsteroidDetected -= UpdateScoreText;
+        }
     }
 
     private void UpdateScoreText(GameObject asteroid)
     {
-        scoreText.text = $"Score: {asteroidCollideDetection.CollisionCount}";
+        int sumFromBullets = 0;
+        for (int i = 0; i < bulletsACD.Count; i++)
+        {
+            sumFromBullets += bulletsACD[i].CollisionCount;
+        }
+        scoreText.text = $"Score: {shieldAsteroidCollideDetection.CollisionCount + sumFromBullets}";
     }
 }
