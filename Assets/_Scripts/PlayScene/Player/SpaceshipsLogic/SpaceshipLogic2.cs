@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class SpaceshipLogic2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private CircleCollider2D playerShieldCollider;
+    [SerializeField] private Light playerShieldLightEffect;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private float shieldColliderValue = 0.6f;
+    [SerializeField] private float shieldLightValue = 1.3f;
+
+    private void Start()
     {
-        
+        playerShieldCollider.radius = shieldColliderValue;
+        playerShieldLightEffect.range = shieldLightValue;
     }
 }

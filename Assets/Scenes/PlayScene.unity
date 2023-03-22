@@ -6857,6 +6857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf47649eb00a745883f955b2e9c37b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerShieldCollider: {fileID: 1007600350}
+  playerShieldLightEffect: {fileID: 1761534304}
+  shieldColliderValue: 0.6
+  shieldLightValue: 1.3
 --- !u!1 &1384186069
 GameObject:
   m_ObjectHideFlags: 0
@@ -7525,6 +7529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceshipsTransform: {fileID: 1205574933}
+  spaceshipsLogicTransform: {fileID: 2035413849}
 --- !u!114 &1759376321
 MonoBehaviour:
   m_ObjectHideFlags: 0
