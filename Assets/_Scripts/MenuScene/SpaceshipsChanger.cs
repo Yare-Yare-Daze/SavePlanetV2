@@ -14,7 +14,7 @@ public class SpaceshipsChanger : MonoBehaviour
     private List<GameObject> describes = new List<GameObject>();
     private int currentSpaceshipIndex;
 
-    private void Start()
+    private void Awake()
     {
         Initialize();
     }
@@ -58,6 +58,11 @@ public class SpaceshipsChanger : MonoBehaviour
 
     private void OnClickAnyButtonHandler()
     {
+        CheckCurrentSpaceship();
+    }
+
+    private void CheckCurrentSpaceship()
+    {
         for (int i = 0; i < spaceships.Count; i++)
         {
             spaceships[i].SetActive(false);
@@ -71,6 +76,9 @@ public class SpaceshipsChanger : MonoBehaviour
     {
         spaceshipsGO.SetActive(true);
         describesSpaceShipsGO.SetActive(true);
+        Debug.Log("spaceships.Count: " + spaceships.Count);
+        Debug.Log("PlayerPrefs.GetInt(Strings.SpaceshipKey): " + PlayerPrefs.GetInt(Strings.SpaceshipKey));
+        CheckCurrentSpaceship();
     }
 
     private void OnDisable()
