@@ -76,8 +76,6 @@ public class SpaceshipsChanger : MonoBehaviour
     {
         spaceshipsGO.SetActive(true);
         describesSpaceShipsGO.SetActive(true);
-        Debug.Log("spaceships.Count: " + spaceships.Count);
-        Debug.Log("PlayerPrefs.GetInt(Strings.SpaceshipKey): " + PlayerPrefs.GetInt(Strings.SpaceshipKey));
         CheckCurrentSpaceship();
     }
 
